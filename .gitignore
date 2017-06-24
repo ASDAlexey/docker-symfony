@@ -1,0 +1,15 @@
+.idea/
+.env
+.DS_Store
+
+src/
+umbrella-plugins/
+uploads/
+
+nginx/configs/conf.d/
+nginx/configs/.htpasswd
+nginx/ssl/
+!nginx/ssl/.gitkeep
+
+dump/*.sql
+.env.save
