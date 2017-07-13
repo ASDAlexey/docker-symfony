@@ -48,8 +48,8 @@ restart:
 	@$(MAKE) --no-print-directory status
 
 cache-clear:
-	@docker-compose exec app bash -c "cd /var/www/html/${APP_NAME}/ && php app/console cache:clear --env=prod"
-	@docker-compose exec app bash -c "cd /var/www/html/${APP_NAME}/ && php app/console cache:clear"
+	@docker-compose exec app bash -c "cd /var/www/html/${APP_NAME}/ && php ./bin/console cache:clear --env=prod"
+	@docker-compose exec app bash -c "cd /var/www/html/${APP_NAME}/ && php ./bin/console cache:clear"
 status:
 	@echo "\n\033[1;m Containers statuses \033[0m"
 	@docker-compose ps
