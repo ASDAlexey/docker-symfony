@@ -23,6 +23,7 @@ pull:
 	@$(MAKE) --no-print-directory clone
 	@$(MAKE) --no-print-directory composer-install
 	@$(MAKE) --no-print-directory cache-clear
+
 rebuild: stop
 	@echo "\n\033[1;m Rebuilding containers... \033[0m"
 	@docker-compose build --no-cache
@@ -73,11 +74,11 @@ composer-install:
 	@$(MAKE) --no-print-directory permissions
 
 permissions:
-	@docker-compose exec app bash -c "chmod -R 755 /var/www/html/${APP_NAME}/app/cache /var/www/html/${APP_NAME}/app/logs"
-	@docker-compose exec app bash -c "chown -R www-data:www-data /var/www/html/${APP_NAME}/app/cache /var/www/html/${APP_NAME}/app/logs"
+	@docker-compose exec app bash -c "chmod -R 755 /var/www/html/${APP_NAME}/var/cache /var/www/html/${APP_NAME}/var/logs"
+	@docker-compose exec app bash -c "chown -R www-data:www-data /var/www/html/${APP_NAME}/var/cache /var/www/html/${APP_NAME}/var/logs"
 
 schema-update:
-	@docker-compose exec app bash -c "cd /var/www/html/${APP_NAME}/ && php app/console doctrine:schema:update --force"
+	@docker-compose exec app bash -c "cd /var/www/html/${APP_NAME}/ && php bin/console doctrine:schema:update --force"
 
 logs-nginx:
 	@docker-compose logs --tail=100 -f web-srv
